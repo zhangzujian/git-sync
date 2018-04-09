@@ -1,0 +1,11 @@
+# directory to store local repositories
+LOCAL_DIR="/var/lib/git-sync"
+
+# git config: user.name
+GIT_USER_NAME=""
+
+# git config: user.email
+GIT_USER_EMAIL=""
+
+# git config: push.default
+GIT_PUSH_DEFAULT=""
