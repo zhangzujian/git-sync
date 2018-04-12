@@ -25,6 +25,7 @@ function do_sync() {
     local GIT_DIR_OPT="--git-dir=$repo_dir/.git --work-tree=$local_dir/${directories[$i]}"
     
     if [ -d "$local_dir/${directories[$i]}" ]; then
+        git $GIT_DIR_OPT fetch upstream
         git $GIT_DIR_OPT fetch --tags --prune upstream
     else
         git clone --origin upstream "$upstream" "$local_dir/${directories[$i]}"
