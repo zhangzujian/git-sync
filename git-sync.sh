@@ -26,7 +26,7 @@ function do_sync() {
     
     if [ -d "$repo_dir" ]; then
         git $GIT_DIR_OPT fetch --prune upstream
-        git $GIT_DIR_OPT fetch --tags upstream
+        git $GIT_DIR_OPT fetch --tags --prune upstream
     else
         git clone --origin upstream "$upstream" "$repo_dir"
         if [ $? -eq 0 ]; then
