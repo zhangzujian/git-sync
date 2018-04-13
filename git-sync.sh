@@ -22,13 +22,13 @@ function conf_get_val() {
 function do_sync() {
     local local_dir="$1" directory="$2" repository="$3" upstream="$4"
     local repo_dir="$local_dir/${directories[$i]}"
-    local GIT_DIR_OPT="--git-dir=$repo_dir/.git --work-tree=$local_dir/${directories[$i]}"
+    local GIT_DIR_OPT="--git-dir=$repo_dir/.git --work-tree=$repo_dir"
     
-    if [ -d "$local_dir/${directories[$i]}" ]; then
-        git $GIT_DIR_OPT fetch upstream
-        git $GIT_DIR_OPT fetch --tags --prune upstream
+    if [ -d "$repo_dir" ]; then
+        git $GIT_DIR_OPT fetch --prune upstream
+        git $GIT_DIR_OPT fetch --tags upstream
     else
-        git clone --origin upstream "$upstream" "$local_dir/${directories[$i]}"
+        git clone --origin upstream "$upstream" "$repo_dir"
         if [ $? -eq 0 ]; then
             git $GIT_DIR_OPT remote add origin "$repository"
         fi
