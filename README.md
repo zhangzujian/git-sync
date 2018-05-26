@@ -25,9 +25,6 @@ export GIT_USER_NAME="username"
 
 # git config: user.email
 export GIT_USER_EMAIL="username@example.com"
-
-# git config: push.default
-export GIT_PUSH_DEFAULT="matching"
 ```
 
 You can also create an environment file and then source it before running the command.
@@ -41,9 +38,6 @@ GIT_USER_NAME="username"
 
 # git config: user.email
 GIT_USER_EMAIL="username@example.com"
-
-# git config: push.default
-GIT_PUSH_DEFAULT="matching"
 ```
 
 Default values of the environment variables are as follow:
@@ -53,7 +47,6 @@ Default values of the environment variables are as follow:
 | LOCAL_DIR             | /tmp/git-sync |
 | GIT_USER_NAME         | -             |
 | GIT_USER_EMAIL        | -             |
-| GIT_PUSH_DEFAULT      | -             |
 
 Finally, run the command below:
 

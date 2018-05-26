@@ -3,19 +3,19 @@
 # function below is from https://stackoverflow.com/a/22690437
 function conf_get_val() {
     awk -v section="$2" -v variable="$3" '
-		$0 == "[" section "]" { in_section = 1; next }
-		in_section && $1 == variable {
-			$1=""
-			$2=""
-			sub(/^[[:space:]]+/, "")
-			print
-			exit
-		}
-		in_section && $1 == "" {
-			# we are at a blank line without finding the var in the section
-			#print "not found" > "/dev/stderr"
-			exit 1
-		}
+        $0 == "[" section "]" { in_section = 1; next }
+        in_section && $1 == variable {
+            $1=""
+            $2=""
+            sub(/^[[:space:]]+/, "")
+            print
+            exit
+        }
+        in_section && $1 == "" {
+            # we are at a blank line without finding the var in the section
+            #print "not found" > "/dev/stderr"
+            exit 1
+        }
     ' "$1"
 }
 
@@ -46,7 +46,7 @@ function do_sync() {
     for ub in ${upstream_branches[@]}; do
         for lb in ${local_branches[@]}; do
             if [ $lb = $ub ]; then
-                git $GIT_DIR_OPT fetch upstream $ub:$lb
+                git $GIT_DIR_OPT fetch --force upstream $ub:$lb
                 continue 2
             fi
         done
@@ -76,9 +76,6 @@ function git_sync() {
     fi
     if [ ! -z "$GIT_USER_EMAIL" ]; then
         GIT_CONF_OPT="$GIT_CONF_OPT -c user.email=$GIT_USER_EMAIL"
-    fi
-    if [ ! -z "$GIT_PUSH_DEFAULT" ]; then
-        GIT_CONF_OPT="$GIT_CONF_OPT -c push.default=$GIT_PUSH_DEFAULT"
     fi
     
     if [ -z "$LOCAL_DIR" ]; then
